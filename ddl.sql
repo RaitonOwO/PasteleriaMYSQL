@@ -1,4 +1,4 @@
--- Active: 1728681034905@@localhost@3306@PasteleriaMYSQL
+-- Active: 1727728842394@@127.0.0.1@3306@PasteleriaMYSQL
 
 CREATE DATABASE PasteleriaMYSQL;
 
@@ -50,3 +50,30 @@ CREATE TABLE `productos_ventas`
 );
 
 
+CREATE TABLE `ventas`
+(
+    `id_venta` INT NOT NULL,
+    `fecha_venta` DATETIME NOT NULL,
+    `id_cliente` INT NOT NULL,
+    `id_empleado` INT NOT NULL,
+    CONSTRAINT `PK_ventas` PRIMARY KEY (`id_venta`),
+    CONSTRAINT `FK_cliente_ventas` FOREIGN KEY (`id_cliente`) REFERENCES `clientes`(`id_cliente`),
+    CONSTRAINT `FK_empleado_ventas` FOREIGN KEY (`id_empleado`) REFERENCES `empleados`(`id_empleado`)
+);
+
+CREATE TABLE `clientes`
+(
+    `id_cliente` INT NOT NULL,
+    `nombre` VARCHAR(100) NOT NULL,
+    `telefono` INT NOT NULL,
+    `correo_electronico` VARCHAR(100) NOT NULL,
+    CONSTRAINT `PK_cliente` PRIMARY KEY (`id_cliente`)
+);
+
+CREATE TABLE `empleados`
+(
+    `id_empleado` INT NOT NULL,
+    `nombre` VARCHAR(100) NOT NULL,
+    `correo_electronico` VARCHAR(100) NOT NULL,
+    CONSTRAINT `PK_empleado` PRIMARY KEY (`id_empleado`)
+);
